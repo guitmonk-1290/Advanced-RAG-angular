@@ -1,0 +1,329 @@
+::-webkit-scrollbar {
+  width: 5px;
+  margin-left: 4px;
+}
+
+/* Subtle track color close to background: */
+::-webkit-scrollbar-track-piece {
+  background-color: #FFF; /* Adjust based on your background */
+}
+
+/* Unobtrusive thumb color, slightly darker than track: */
+::-webkit-scrollbar-thumb {
+  background-color: #e0e0e0; 
+  outline: 2px solid #FFF;
+  outline-offset: -2px;
+  border: 1px solid #B7B7B7;
+  border-radius: 2px; /* Minimal rounding */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #d0d0d0;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.toggleButton {
+  background-color: #ffffff; /* Change the background color as needed */
+  color: black; /* Change the text color as needed */
+  border: none;
+  padding: 4px 8px;
+  font-size: 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: 2px solid blue;
+}
+
+.toggleButton-clicked {
+  background-color: #A8C5F8;
+}
+
+.toggleButton:hover {
+  background-color: #f0ffff; /* Change the hover background color as needed */
+}
+
+.button-content {
+  display: flex;
+  align-items: center;
+}
+
+.button-icon {
+  width: 20px; /* Adjust the width of the icon as needed */
+  height: auto;
+  margin-right: 5px; /* Adjust the spacing between the icon and text as needed */
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid #007bff;
+  width: 12px;
+  height: 12px;
+  -webkit-animation: spin 1s linear infinite; 
+  animation: spin 1s linear infinite;
+}
+
+.parent-container {
+  width: fit-content;
+  margin: 10px;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  width: 650px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 10px;
+  font-family: Arial, sans-serif;
+  font-size: medium;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.head-container {
+  width: 100%;
+  background-color: #0051ff;
+  color: white;
+}
+
+.head-text-container {
+  display: flex; 
+  flex-direction: column; 
+  gap: 8px;
+  padding: 8px;
+}
+
+.greet-text {
+  font-size: 22px;
+  color: white;
+  font-weight: bold;
+}
+
+.follow-text {
+  font-size: 14px;
+  font-weight: normal
+}
+
+.date {
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: bold;
+  padding-bottom: 5px;
+}
+
+.messages-container {
+  display: flex;
+  flex-direction: column; /* Messages stacked vertically */
+  margin-bottom: 12px;
+  height: 420px;
+  margin-top: 8px;
+}
+
+.chat-messages {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  height: 100%;
+  font-size: 14px;
+}
+
+.chat-messages li {
+  /* Remove margin-bottom */
+  margin-bottom: 8px;
+}
+
+.new-message {
+  animation: enter 0.1s ease-in forwards;
+}
+
+.message-wrapper {
+  /* User messages to the right, bot messages to the left */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* Fit content width */
+  width: fit-content;
+  max-width: 650px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-bottom: 15px; /* Add some spacing between messages */
+}
+
+.user-message {
+  width: fit-content;
+  margin-left: auto;
+}
+
+.bot-message {}
+
+.date-wrapper {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.user-wrapper {
+  /* User message styles */
+  background-color: #0051ff;
+  color: #D7E6FF;
+  justify-content: flex-end;
+  margin-left: auto;
+  width: fit-content;
+  max-width: 380px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.bot-wrapper {
+  /* Bot message styles */
+  background-color: #D7E6FF;
+  color: blue;
+  justify-content: flex-start;
+  width: fit-content;
+  flex-direction: column;
+  max-width: 380px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.tables-wrapper {
+  /* Bot message styles */
+  /* background-color: pink; */
+  justify-content: flex-start;
+  width: fit-content;
+  /* display: grid; */
+  margin-bottom: 5px;
+  padding: 5px 10px;
+  gap: 1rem; /* Space between grid items */
+  ; /* Padding around the grid */
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive columns */
+}
+
+.table-container {
+}
+
+.selectable {
+  cursor: pointer;
+}
+
+.selectable.selected {
+  background-color: lightgreen;
+}
+
+.table {
+  /* Background color of each response */
+  background-color: white;
+  color: black;
+  margin-bottom: 8px;
+  padding: 2px;
+  border: 1px solid blue;
+  border-radius: 12px; /* Rounded corners */
+  text-align: center; /* Center text alignment */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.table.selected {
+  background-color: lightgreen;
+}
+
+@media (max-width: 600px) {
+  .tables-wrapper {
+      grid-template-columns: 1fr; /* Single column layout on small screens */
+  }
+}
+
+.loading-wrapper {
+  /* Bot message styles */
+  justify-content: flex-start;
+  width: fit-content;
+  max-width: 280px;
+  padding: 5px 10px;
+  margin-bottom: 5px;
+}
+
+.response_wait {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.response_wait_message {
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  font-size: 14px;
+  color: gray;
+}
+
+.action-container {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  width: 100%;
+}
+
+.chat-input {
+  display: flex;
+  width: 100%;
+  margin-top: 4px;
+  padding: 8px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.chat-input span {
+  background-color: #007bff;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.chat-input span:hover {
+  background-color: #0062cc;
+}
+
+.mat-icon-button:hover {
+  background-color: skyblue;
+}
+
+.mat-icon  {
+  flex: 1; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  vertical-align: middle;
+  font-size: 28px; 
+  color: #007bff;
+}

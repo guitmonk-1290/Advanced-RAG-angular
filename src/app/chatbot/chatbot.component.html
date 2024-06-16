@@ -1,0 +1,63 @@
+<div class="parent-container">
+    <button mat-Stroked-button color="accent" class="toggleButton" (click)="toggleChatContainer()">
+        <span class="button-content">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -15 70 70">
+                <circle cx="10" cy="20" r="10" fill="#FF5733" />
+                <circle cx="20" cy="20" r="10" fill="#5733FF" />
+                <circle cx="30" cy="20" r="10" fill="#33FF57" />
+            </svg>
+            <span class="button-text">AI Chat</span>
+        </span>
+    </button>
+
+    <div class="chat-container" *ngIf="isChatOpen">
+        <!-- Your existing chat container content -->
+        <!-- Header -->
+        <div class="head-container">
+            <div class="head-text-container">
+                <span class="greet-text">Hi {{ user }}!</span>
+                <span class="follow-text">What can I help you with?</span>
+            </div>
+        </div>
+
+        <!-- Message Container -->
+        <div class="messages-container" #messagesContainer>
+            <ul class="chat-messages">
+                <li *ngFor="let message of messages; let i = index" [ngClass]="{
+                        'date': message.date,
+                        'user-message': message.user,
+                        'bot-message': !message.user
+                    }">
+                    <div class="new-message">
+                        <div class="message-wrapper" [ngClass]="{
+                            'tables-wrapper': message.tables,    
+                            'user-wrapper': message.user,
+                            'bot-wrapper': !message.user && !message.date,
+                            'date-wrapper': message.date
+                            }">
+                            <span [innerText]="message.text"></span>
+                            <div *ngIf="message.tables">
+                                <div class="table-container">
+                                    <div *ngFor="let table of message.tables" class="table selectable" (click)="toggleSelection(table)" [class.selected]="isSelected(table)">
+                                        <div [innerHTML]="table"></div>
+                                        <!-- <mat-checkbox [checked]="isSelected(table)" \ (change)="toggleSelection(table)">
+                                        </mat-checkbox> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Input Form -->
+        <div class="action-container">
+            <input class="chat-input" type="text" [(ngModel)]="userInput" placeholder="Enter your query...">
+            <button mat-icon-button [disabled]="userInput.trim() === ''" (click)="getResponse()" aria-label="Send">
+                <div *ngIf="isLoading" class="loader"></div>
+                <mat-icon *ngIf="!isLoading">send</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>
